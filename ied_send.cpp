@@ -269,7 +269,7 @@ void form_goose_pdu(GooseSvData &goose_data, std::vector<unsigned char> &pduOut)
 {
     /* Initialize variables for GOOSE PDU data */
     unsigned char goosePDU_Tag{0x61};
-    unsigned char goosePDU_Tag2{0x81};
+    //unsigned char goosePDU_Tag2{0x81};
     unsigned char goosePDU_Len{};         // Includes GOOSE PDU Tag & Len and every component's length
 
         // *** GOOSE PDU -> gocbRef ***
@@ -440,7 +440,7 @@ void form_goose_pdu(GooseSvData &goose_data, std::vector<unsigned char> &pduOut)
 
     /* Fill up pduOut for "returning" */
     pduOut.push_back(goosePDU_Tag);     // index 0
-    pduOut.push_back(goosePDU_Tag2);    // index 1
+    //pduOut.push_back(goosePDU_Tag2);    // index 1
     pduOut.push_back(goosePDU_Len);     // index 2: here, GOOSE PDU Length is not yet computed/assigned
 
     pduOut.push_back(gocbRef_Tag);
@@ -497,7 +497,7 @@ void form_goose_pdu(GooseSvData &goose_data, std::vector<unsigned char> &pduOut)
     pduOut.push_back(allData_Len);
     pduOut.insert(pduOut.end(), allData_Value.begin(), allData_Value.end());
 
-    pduOut[2] = pduOut.size();
+    pduOut[1] = pduOut.size();
 
     // Update historical allData before exiting function
     goose_data.prev_allData_Value = allData_Value;
@@ -509,7 +509,7 @@ void form_sv_pdu(GooseSvData &sv_data, std::vector<unsigned char> &pduOut)
 {
     /* Initialize variables for SV PDU data */
     unsigned char svPDU_Tag{0x60};
-    unsigned char svPDU_Tag2{0x80};
+    //unsigned char svPDU_Tag2{0x80};
     unsigned char svPDU_Len{};         // Includes SV PDU Tag & Len and every component's length
 
     unsigned char noASDU_Tag{0x80};
@@ -647,10 +647,10 @@ void form_sv_pdu(GooseSvData &sv_data, std::vector<unsigned char> &pduOut)
      * Then, append the tmpVec at the end to complete the SV PDU.
      */
     seqOfASDU_Len = tmpVec.size() + 2;
-    svPDU_Len = seqOfASDU_Len + 6;
+    svPDU_Len = seqOfASDU_Len + 5;
 
     pduOut.push_back(svPDU_Tag);
-    pduOut.push_back(svPDU_Tag2);
+    //pduOut.push_back(svPDU_Tag2);
     pduOut.push_back(svPDU_Len);
 
     pduOut.push_back(noASDU_Tag);       // 0x80

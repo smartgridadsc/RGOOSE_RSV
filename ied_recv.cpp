@@ -172,13 +172,13 @@ bool valid_GSE_SMV(const unsigned char (&buf)[MAXBUFLEN], const int numbytes, Go
      */
     if (sess_prot == "GSE")
     {
-        if (buf[38] != 0x61 || buf[39] != 0x81)
+        if (buf[38] != 0x61) //|| buf[39] != 0x81)
         {
             std::cerr << "[!] Error: GOOSE PDU Tag\n";
             return false;         
         }
 
-        if ((38 + buf[40]) != signature_idx)
+        if ((38 + buf[39]) != signature_idx)
         {
             std::cerr << "[!] Error: GOOSE PDU Length\n";
             return false;         
@@ -188,8 +188,8 @@ bool valid_GSE_SMV(const unsigned char (&buf)[MAXBUFLEN], const int numbytes, Go
         size_t tag_idx{};
         size_t len_idx{};
 
-        // gocbRef (Tag at index 41 = PDU first byte's index + 3)
-        tag_idx = 41;
+        // gocbRef (Tag at index 40 = PDU first byte's index + 3)
+        tag_idx = 40;
         len_idx = tag_idx + 1;
         assert(len_idx < signature_idx);    // Ensure still 'digging' in the PDU
         if (buf[tag_idx] != 0x80)
@@ -433,43 +433,43 @@ bool valid_GSE_SMV(const unsigned char (&buf)[MAXBUFLEN], const int numbytes, Go
          *  - smpRate
          *  - SmpMod
          */
-        if (buf[38] != 0x60 || buf[39] != 0x80)
+        if (buf[38] != 0x60) //|| buf[39] != 0x80)
         {
             std::cerr << "[!] Error: SV PDU Tag\n";
             return false;         
         }
 
-        if ((38 + buf[40]) != signature_idx)
+        if ((38 + buf[39]) != signature_idx)
         {
             std::cerr << "[!] Error: SV PDU Length\n";
             return false;         
         }
 
-        if (buf[41] != 0x80 || buf[42] != 0x01 || buf[43] != 0x01)
+        if (buf[40] != 0x80 || buf[41] != 0x01 || buf[42] != 0x01)
         {
             std::cerr << "[!] Error: noASDU Tag/Length/Value\n";
             return false;
         }
 
-        if (buf[44] != 0xA2)
+        if (buf[43] != 0xA2)
         {
             std::cerr << "[!] Error: Sequence-of-ASDUs Tag\n";
             return false;
         }
 
-        if ((44 + buf[45]) != signature_idx)
+        if ((43 + buf[44]) != signature_idx)
         {
             std::cerr << "[!] Error: Sequence-of-ASDUs Length\n";
             return false;         
         }
 
-        if (buf[46] != 0x30)
+        if (buf[45] != 0x30)
         {
             std::cerr << "[!] Error: ASDU Tag\n";
             return false;  
         }
 
-        if ((46 + buf[47]) != signature_idx)
+        if ((45 + buf[46]) != signature_idx)
         {
             std::cerr << "[!] Error: ASDU Length\n";
             return false;         
@@ -479,7 +479,7 @@ bool valid_GSE_SMV(const unsigned char (&buf)[MAXBUFLEN], const int numbytes, Go
         size_t tag_idx{};
         size_t len_idx{};
 
-        tag_idx = 48;
+        tag_idx = 47;
         len_idx = tag_idx + 1;
         assert(len_idx < signature_idx);    // Ensure still 'digging' in the PDU
         if (buf[tag_idx] != 0x80)
