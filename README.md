@@ -17,6 +17,14 @@ Run "make" to build the ied_recv and ied_send executables.
 2) Start sending on another terminal:  
    sudo ./build/ied_send sample.sed enp0s3 S1_IED22
 
+
+### Validation
+
+Capture the R-GOOSE and R-SV messages using Wireshark (Skunkwork version that has IEC 61850-90-5 parser built in) on either terminal.
+
+Wireshark Skunkwork version is available at: https://www.otb-consultingservices.com/brainpower/shop/skunkworks-network-analyzer/
+
+
 Note:
 - Replace "enp0s3" with the interface you are using.
 - The scripts run_recv.sh and run_send.sh can be used in place of the above.
