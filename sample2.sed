@@ -43,10 +43,36 @@
 						<P type="VLAN-PRIORITY">4</P>
 					</Address>
 				</SMV>
+				<SMV cbName="L2Diff23-R-SV" desc="R-SV from S1_IED23" ldInst="LD1">
+					<Address>
+						<P type="IP">238.0.0.3</P>
+						<P type="APPID">0003</P>
+						<P type="VLAN-ID">0</P>
+						<P type="VLAN-PRIORITY">4</P>
+					</Address>
+				</SMV>
+				<SMV cbName="L2Diff24-R-SV" desc="R-SV from S1_IED24" ldInst="LD1">
+					<Address>
+						<P type="IP">238.0.0.4</P>
+						<P type="APPID">0004</P>
+						<P type="VLAN-ID">0</P>
+						<P type="VLAN-PRIORITY">4</P>
+					</Address>
+				</SMV>
 				<GSE ldInst="LD1" cbName="CB22_Status-R-GOOSE">
 					<Address>
 						<P type="IP">238.0.1.1</P>
 						<P type="APPID">0005</P>
+						<P type="VLAN-ID">0</P>
+						<P type="VLAN-PRIORITY">4</P>
+					</Address>
+					<MinTime multiplier="m" unit="s">1000</MinTime>
+					<MaxTime multiplier="m" unit="s">60000</MaxTime>
+				</GSE>
+				<GSE ldInst="LD1" cbName="CB33_Status-R-GOOSE">
+					<Address>
+						<P type="IP">238.0.1.2</P>
+						<P type="APPID">0006</P>
 						<P type="VLAN-ID">0</P>
 						<P type="VLAN-PRIORITY">4</P>
 					</Address>
@@ -96,7 +122,10 @@
 			<ConfReportControl max="10" bufConf="false" />
 			<GetCBValues />
 			<SMVSettings cbName="L2Diff22-R-SV" datSet="measurementsofIED22toS2" appID="0001" dataLabel="measurementsofIED22toS2" />
+			<SMVSettings cbName="L2Diff23-R-SV" datSet="measurementsofIED23toS2" appID="0003" dataLabel="measurementsofIED23toS2" />
+			<SMVSettings cbName="L2Diff24-R-SV" datSet="measurementsofIED24toS2" appID="0004" dataLabel="measurementsofIED24toS2" />
 			<GSESettings cbName="CB22_Status-R-GOOSE" datSet="StatusofCB22" appID="0005" dataLabel="Status info of CB22" />
+			<GSESettings cbName="CB33_Status-R-GOOSE" datSet="StatusofCB33" appID="0006" dataLabel="Status info of CB33" />
 			<GOOSE max="10" fixedOffs="false" />
 		</Services>
 		<AccessPoint name="S1">
@@ -113,10 +142,22 @@
 					<DataSet name="StatusofCB22">
 						<FCDA IdInst="LD1" lnInst="0" lnClass="XCBR" doName="Pos" daName="DPC" fc="MX" />
 					</DataSet>
+					<DataSet name="StatusofCB33">
+						<FCDA IdInst="LD1" lnInst="0" lnClass="XCBR" doName="Pos" daName="DPC" fc="MX" />
+					</DataSet>
 					<SampledValueControl Name="L2Diff22-R-SV" desc="R-SV from S1_IED22" datSet="measurementsofIED22toS2">
 						<IEDName>S2_IED0</IEDName>
 					</SampledValueControl>
+					<SampledValueControl Name="L2Diff23-R-SV" desc="R-SV from S1_IED23" datSet="measurementsofIED23toS2">
+						<IEDName>S2_IED0</IEDName>
+					</SampledValueControl>
+					<SampledValueControl Name="L2Diff24-R-SV" desc="R-SV from S1_IED24" datSet="measurementsofIED24toS2">
+						<IEDName>S2_IED0</IEDName>
+					</SampledValueControl>
 					<GSEControl Name="CB22_Status-R-GOOSE" desc="Status info of CB22" type="GOOSE" fixedOffs="false" confRev="0" appID="0005" datSet="StatusofCB22">
+						<IEDName>S2_IED0</IEDName>
+					</GSEControl >
+					<GSEControl Name="CB33_Status-R-GOOSE" desc="Status info of CB33" type="GOOSE" fixedOffs="false" confRev="0" appID="0006" datSet="StatusofCB33">
 						<IEDName>S2_IED0</IEDName>
 					</GSEControl >
 				</LN0>
