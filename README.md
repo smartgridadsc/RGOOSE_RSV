@@ -36,3 +36,8 @@ Note:
   - current magnitude
   - current angle
 - After the end of data for both GOOSE and SV, the send script will loop from the beginning.
+
+
+### Acknowledgement
+
+This work is supported by the National Research Foundation, Singapore, Singapore University of Technology and Design under its National Satellite of Excellence in Design Science and Technology for Secure Critical Infrastructure Grant (NSoE_DeST-SCI2019-0005).
